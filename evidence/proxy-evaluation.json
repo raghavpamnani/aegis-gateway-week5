@@ -1,0 +1,75 @@
+{
+  "primary_closed_port_fault": true,
+  "limits": "Native LiteLLM proxy smoke check, not Docker image validation. Secondary uses local Ollama.",
+  "run": {
+    "id": "ddbb9543e46d4154a01c5a2a58b6995a",
+    "started": 1793090991.83826,
+    "status": "success",
+    "mode": "proxy",
+    "scenario": "healthy",
+    "baseline": false,
+    "identity": "proxy-validation",
+    "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+    "attempts": [
+      {
+        "provider": "primary",
+        "number": 1,
+        "status": "success",
+        "duration_ms": 7010.38
+      }
+    ],
+    "stages": [
+      "classify",
+      "hybrid_retrieve",
+      "policy_gate",
+      "generate",
+      "citation_check"
+    ],
+    "cache": "bypass",
+    "tokens": {
+      "input": 394,
+      "output": 235
+    },
+    "estimated_cost": 0.0,
+    "ttft_ms": 10814.216666999528,
+    "trace_id": "61d9a7aeecd7ab007aa875f918ad495e",
+    "citations_valid": true,
+    "usage_status": "provider_reported_final_attempt",
+    "same_endpoint": false,
+    "pricing": {
+      "input_per_million": 0.0,
+      "output_per_million": 0.0,
+      "basis": "operator-configured API rates; excludes local infrastructure"
+    },
+    "sources": [
+      {
+        "id": "POL-001",
+        "title": "Standard refund policy",
+        "version": 1,
+        "cosine": 0.5684,
+        "bm25": 4.2369
+      },
+      {
+        "id": "POL-003",
+        "title": "Enterprise cancellation policy",
+        "version": 1,
+        "cosine": 0.5106,
+        "bm25": 4.4752
+      },
+      {
+        "id": "RUN-002",
+        "title": "HTTP 429 model quota response",
+        "version": 1,
+        "cosine": 0.2156,
+        "bm25": 1.5284
+      }
+    ],
+    "proxy_metadata": {
+      "x-litellm-attempted-retries": "0",
+      "x-litellm-attempted-fallbacks": "1"
+    },
+    "latency_ms": 12044.45,
+    "budget_reservation_retained": false
+  },
+  "answer": "The standard refund policy [POL-001] allows refundable monthly subscriptions within 14 calendar days of purchase, but renewals are not refundable. Enterprise contracts follow signed terms, requiring verification by a support specialist. Refunds are not issued without eligibility confirmation. The policy emphasizes that the assistant cannot promise refunds based on monthly plan terms."
+}

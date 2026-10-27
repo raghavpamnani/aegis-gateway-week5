@@ -1,0 +1,919 @@
+{
+  "profile": "live",
+  "created_utc": "2026-10-27T08:37:04Z",
+  "python": "3.12.14",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "corpus": "c31dd3b653a45d48",
+  "embedding": "sentence-transformers/all-MiniLM-L6-v2",
+  "model": "qwen3:1.7b",
+  "concurrency": 1,
+  "warmup": "one retrieval, model may be cold",
+  "retries": 1,
+  "timeout_seconds": 60,
+  "deadline_seconds": 120,
+  "limits": "Small scripted fault matrix, not production availability or model accuracy. Retry jitter is random. Both local model routes share one endpoint; independence is not demonstrated.",
+  "summary": {
+    "baseline": {
+      "n": 5,
+      "successes": 1,
+      "median_ms": 370.45,
+      "attempts": 5
+    },
+    "gateway": {
+      "n": 5,
+      "successes": 3,
+      "median_ms": 4180.03,
+      "attempts": 12
+    }
+  },
+  "runs": [
+    {
+      "id": "18b791db35cf4c7cb61e3d0b3ba9e16b",
+      "started": 1793090184.194415,
+      "status": "success",
+      "mode": "live",
+      "scenario": "healthy",
+      "baseline": true,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 8395.55
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "bypass",
+      "tokens": {
+        "input": 394,
+        "output": 235
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 7180.114917000537,
+      "trace_id": "39a0d146e83059d4a30525f453c317d2",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "latency_ms": 8403.29,
+      "budget_reservation_retained": false,
+      "answer": "The standard refund policy [POL-001] allows refundable monthly subscriptions within 14 calendar days of purchase, but renewals are not refundable. Enterprise contracts follow signed terms, requiring verification by a support specialist. Refunds are not issued without eligibility confirmation. The policy emphasizes that the assistant cannot promise refunds based on monthly plan terms."
+    },
+    {
+      "id": "0609badb792645538b8f69bd59520dfd",
+      "started": 1793090192.62,
+      "status": "error",
+      "mode": "live",
+      "scenario": "timeout",
+      "baseline": true,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated provider timeout",
+          "duration_ms": 35.9
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "bypass",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": null,
+      "trace_id": "60b680ebe0d99d1650a1005e18f1d7bd",
+      "citations_valid": false,
+      "usage_status": "unknown",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "error": "All permitted providers unavailable",
+      "latency_ms": 370.45,
+      "budget_reservation_retained": true,
+      "answer": ""
+    },
+    {
+      "id": "949217f0721a456782c40900885b4c1c",
+      "started": 1793090192.992057,
+      "status": "error",
+      "mode": "live",
+      "scenario": "rate_limit",
+      "baseline": true,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated upstream HTTP 429",
+          "duration_ms": 31.18
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "bypass",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": null,
+      "trace_id": "092ed78bb3c7863dd77828b4778000cf",
+      "citations_valid": false,
+      "usage_status": "unknown",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "error": "All permitted providers unavailable",
+      "latency_ms": 38.24,
+      "budget_reservation_retained": true,
+      "answer": ""
+    },
+    {
+      "id": "e9a2c95d19b841709ce02acfde579455",
+      "started": 1793090193.031884,
+      "status": "error",
+      "mode": "live",
+      "scenario": "outage",
+      "baseline": true,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated HTTP 503",
+          "duration_ms": 31.5
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "bypass",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": null,
+      "trace_id": "e22cbdb8b2d91987da8d1b29e4f50963",
+      "citations_valid": false,
+      "usage_status": "unknown",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "error": "All permitted providers unavailable",
+      "latency_ms": 38.3,
+      "budget_reservation_retained": true,
+      "answer": ""
+    },
+    {
+      "id": "bc8486126a2b46989a2e2a300266e958",
+      "started": 1793090193.0802429,
+      "status": "partial_error",
+      "mode": "live",
+      "scenario": "midstream",
+      "baseline": true,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated live stream interruption",
+          "duration_ms": 2859.95
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "bypass",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": 2866.34979199971,
+      "trace_id": "17870d1eb49c0783566883365b5473c3",
+      "citations_valid": false,
+      "usage_status": "unknown",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "error": "Simulated live stream interruption",
+      "latency_ms": 2867.62,
+      "budget_reservation_retained": true,
+      "answer": "The"
+    },
+    {
+      "id": "af2dc87a41de430880c46b6e9c45e5da",
+      "started": 1793090195.9504929,
+      "status": "success",
+      "mode": "live",
+      "scenario": "healthy",
+      "baseline": false,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 4191.71
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "bypass",
+      "tokens": {
+        "input": 394,
+        "output": 235
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 2914.6864590002224,
+      "trace_id": "f134b5d06718b48e30b97be9775eee84",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "latency_ms": 4204.26,
+      "budget_reservation_retained": false,
+      "answer": "The standard refund policy [POL-001] allows refundable monthly subscriptions within 14 calendar days of purchase, but renewals are not refundable. Enterprise contracts follow signed terms, requiring verification by a support specialist. Refunds are not issued without eligibility confirmation. The policy emphasizes that the assistant cannot promise refunds based on monthly plan terms."
+    },
+    {
+      "id": "47cff1dd12f74334862bca0b61d6e9e3",
+      "started": 1793090200.193072,
+      "status": "success",
+      "mode": "live",
+      "scenario": "timeout",
+      "baseline": false,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated provider timeout",
+          "duration_ms": 101.25
+        },
+        {
+          "provider": "primary",
+          "number": 2,
+          "status": "error",
+          "error": "Simulated provider timeout",
+          "duration_ms": 31.89
+        },
+        {
+          "provider": "secondary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 4210.17
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "bypass",
+      "tokens": {
+        "input": 394,
+        "output": 235
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 3399.9605409999276,
+      "trace_id": "458544dd0052919765595a3d3a7a0cef",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "latency_ms": 4692.61,
+      "budget_reservation_retained": true,
+      "answer": "The standard refund policy [POL-001] allows refundable monthly subscriptions within 14 calendar days of purchase, but renewals are not refundable. Enterprise contracts follow signed terms, requiring verification by a support specialist. Refunds are not issued without eligibility confirmation. The policy emphasizes that the assistant cannot promise refunds based on monthly plan terms."
+    },
+    {
+      "id": "4bdf4bea1262471aba0e5e9315e535cf",
+      "started": 1793090204.8892071,
+      "status": "success",
+      "mode": "live",
+      "scenario": "rate_limit",
+      "baseline": false,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated upstream HTTP 429",
+          "duration_ms": 132.49
+        },
+        {
+          "provider": "primary",
+          "number": 2,
+          "status": "error",
+          "error": "Simulated upstream HTTP 429",
+          "duration_ms": 31.48
+        },
+        {
+          "provider": "secondary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 3992.88
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "bypass",
+      "tokens": {
+        "input": 394,
+        "output": 235
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 2934.9326250003287,
+      "trace_id": "854fa94808cc725f55d456e7fd9d90a5",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "latency_ms": 4180.03,
+      "budget_reservation_retained": true,
+      "answer": "The standard refund policy [POL-001] allows refundable monthly subscriptions within 14 calendar days of purchase, but renewals are not refundable. Enterprise contracts follow signed terms, requiring verification by a support specialist. Refunds are not issued without eligibility confirmation. The policy emphasizes that the assistant cannot promise refunds based on monthly plan terms."
+    },
+    {
+      "id": "b7ef23be3824498ebf74e0f710beb504",
+      "started": 1793090209.07251,
+      "status": "error",
+      "mode": "live",
+      "scenario": "outage",
+      "baseline": false,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated HTTP 503",
+          "duration_ms": 176.94
+        },
+        {
+          "provider": "primary",
+          "number": 2,
+          "status": "error",
+          "error": "Simulated HTTP 503",
+          "duration_ms": 31.79
+        },
+        {
+          "provider": "secondary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated HTTP 503",
+          "duration_ms": 95.78
+        },
+        {
+          "provider": "secondary",
+          "number": 2,
+          "status": "error",
+          "error": "Simulated HTTP 503",
+          "duration_ms": 32.2
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "bypass",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": null,
+      "trace_id": "5b102cf28be65e039e7b7c6e63950572",
+      "citations_valid": false,
+      "usage_status": "unknown",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "error": "All permitted providers unavailable",
+      "latency_ms": 348.93,
+      "budget_reservation_retained": true,
+      "answer": ""
+    },
+    {
+      "id": "68b020a8e801457897682faf324d11fe",
+      "started": 1793090209.427161,
+      "status": "partial_error",
+      "mode": "live",
+      "scenario": "midstream",
+      "baseline": false,
+      "identity": "benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "error",
+          "error": "Simulated live stream interruption",
+          "duration_ms": 2793.24
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "bypass",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": 2813.607250000132,
+      "trace_id": "8571f54b9d0373b1a459ffce929cd7a0",
+      "citations_valid": false,
+      "usage_status": "unknown",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "error": "Simulated live stream interruption",
+      "latency_ms": 2815.11,
+      "budget_reservation_retained": true,
+      "answer": "The"
+    },
+    {
+      "id": "6ba20dd653684370986c7cec53b2dbb1",
+      "started": 1793090212.2448409,
+      "status": "success",
+      "mode": "live",
+      "scenario": "healthy",
+      "baseline": false,
+      "identity": "cache-benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 3961.53
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "miss",
+      "tokens": {
+        "input": 394,
+        "output": 235
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 2819.721708000543,
+      "trace_id": "9c0f2a90ed8799716fc6437370230448",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "latency_ms": 3981.56,
+      "budget_reservation_retained": false,
+      "case_question": "What is the standard refund policy?"
+    },
+    {
+      "id": "6cc4435467a448729c14df1345a6d852",
+      "started": 1793090216.227653,
+      "status": "success",
+      "mode": "live",
+      "scenario": "healthy",
+      "baseline": false,
+      "identity": "cache-benchmark",
+      "question_hash": "063de67a8d758b7c605ac7e4684b6c64c4423edd9afd51697fa4c4fab0cce93c",
+      "attempts": [],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate"
+      ],
+      "cache": "hit",
+      "tokens": null,
+      "estimated_cost": 0.0,
+      "ttft_ms": 7.663874999707332,
+      "trace_id": "6abbdbf2a1f91118f1c22e140d574f8e",
+      "citations_valid": true,
+      "usage_status": "not_called",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.5684,
+          "bm25": 4.2369
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.5106,
+          "bm25": 4.4752
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.2156,
+          "bm25": 1.5284
+        }
+      ],
+      "cache_similarity": 1.0,
+      "latency_ms": 7.68,
+      "budget_reservation_retained": false,
+      "case_question": "What is the standard refund policy?"
+    },
+    {
+      "id": "c4f277756b144fb5a1b18b5ef38e3e58",
+      "started": 1793090216.2366269,
+      "status": "success",
+      "mode": "live",
+      "scenario": "healthy",
+      "baseline": false,
+      "identity": "cache-benchmark",
+      "question_hash": "b96bfef29870ddc58f43eab11a95acf187a9e61985f1355f9bfc6804978d33b1",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 3603.1
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "miss",
+      "tokens": {
+        "input": 396,
+        "output": 205
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 2677.657791999991,
+      "trace_id": "8da800dc4207f08794c22c36690d7c7a",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.6927,
+          "bm25": 5.3703
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.6295,
+          "bm25": 5.5363
+        },
+        {
+          "id": "RUN-002",
+          "title": "HTTP 429 model quota response",
+          "version": 1,
+          "cosine": 0.262,
+          "bm25": 2.1619
+        }
+      ],
+      "latency_ms": 3627.8,
+      "budget_reservation_retained": false,
+      "case_question": "What is the standard refund policy for subscriptions?"
+    },
+    {
+      "id": "11583cbf2d7d46d08ba8989bc9cb1993",
+      "started": 1793090219.8661928,
+      "status": "success",
+      "mode": "live",
+      "scenario": "healthy",
+      "baseline": false,
+      "identity": "cache-benchmark",
+      "question_hash": "474aecab172e92f880a26a81d3a06e6726988597e79f4d063fe92a1c19a56d11",
+      "attempts": [
+        {
+          "provider": "primary",
+          "number": 1,
+          "status": "success",
+          "duration_ms": 4950.89
+        }
+      ],
+      "stages": [
+        "classify",
+        "hybrid_retrieve",
+        "policy_gate",
+        "generate",
+        "citation_check"
+      ],
+      "cache": "bypass",
+      "tokens": {
+        "input": 383,
+        "output": 271
+      },
+      "estimated_cost": 0.0,
+      "ttft_ms": 3472.1054579995325,
+      "trace_id": "fdcd9100f4e44c2a3a67d982c4c5c339",
+      "citations_valid": true,
+      "usage_status": "provider_reported_final_attempt",
+      "same_endpoint": true,
+      "sources": [
+        {
+          "id": "POL-001",
+          "title": "Standard refund policy",
+          "version": 1,
+          "cosine": 0.572,
+          "bm25": 4.8975
+        },
+        {
+          "id": "POL-003",
+          "title": "Enterprise cancellation policy",
+          "version": 1,
+          "cosine": 0.4735,
+          "bm25": 2.2308
+        },
+        {
+          "id": "RUN-001",
+          "title": "PAY-504 checkout timeout investigation",
+          "version": 1,
+          "cosine": 0.1923,
+          "bm25": 1.1513
+        }
+      ],
+      "latency_ms": 4971.98,
+      "budget_reservation_retained": false,
+      "case_question": "Which subscriptions are not refundable?"
+    }
+  ]
+}

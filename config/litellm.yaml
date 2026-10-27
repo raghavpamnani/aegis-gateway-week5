@@ -1,0 +1,22 @@
+# Proxy owns retries/fallback in AEGIS_MODE=proxy. Never enable both owners.
+model_list:
+  - model_name: support-primary
+    litellm_params:
+      model: openai/qwen3:1.7b
+      api_base: http://host.docker.internal:11435/v1
+      api_key: local
+  - model_name: support-secondary
+    litellm_params:
+      model: openai/qwen3:1.7b
+      api_base: http://host.docker.internal:11435/v1
+      api_key: local
+router_settings:
+  num_retries: 1
+  timeout: 30
+  allowed_fails: 2
+  cooldown_time: 15
+  fallbacks: [{support-primary: [support-secondary]}]
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+litellm_settings:
+  telemetry: false

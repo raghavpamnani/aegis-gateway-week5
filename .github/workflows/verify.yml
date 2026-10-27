@@ -1,0 +1,17 @@
+name: Verify Aegis
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12', cache: pip}
+      - run: pip install -r requirements.lock
+      - run: ruff check aegis scripts tests
+      - run: python -m pytest -q
+      - run: docker compose up -d cache
+      - run: AEGIS_TEST_REDIS_URL=redis://localhost:6380/0 python -m pytest -q tests/test_integrations.py
+      - run: docker build -t aegis-gateway:test .
+      - if: always()
+        run: docker compose down

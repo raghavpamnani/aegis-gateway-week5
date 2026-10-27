@@ -1,0 +1,83 @@
+{
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "threshold": 0.94,
+  "n": 9,
+  "accepted": 2,
+  "false_hits": 0,
+  "false_misses": 1,
+  "limits": "Small manually authored set. Does not establish general semantic cache safety.",
+  "cases": [
+    {
+      "question": "What is the standard refund policy?",
+      "equivalent": true,
+      "similarity": 0.9999999042829415,
+      "eligible": true,
+      "same_source_scope": true,
+      "accepted": true
+    },
+    {
+      "question": "What's the standard refund policy?",
+      "equivalent": true,
+      "similarity": 0.9955675344674202,
+      "eligible": true,
+      "same_source_scope": true,
+      "accepted": true
+    },
+    {
+      "question": "What is the standard refund policy for subscriptions?",
+      "equivalent": true,
+      "similarity": 0.8376574531305003,
+      "eligible": true,
+      "same_source_scope": true,
+      "accepted": false
+    },
+    {
+      "question": "What is the enterprise refund policy?",
+      "equivalent": false,
+      "similarity": 0.8262590434647687,
+      "eligible": true,
+      "same_source_scope": false,
+      "accepted": false
+    },
+    {
+      "question": "What is not refundable under the standard refund policy?",
+      "equivalent": false,
+      "similarity": 0.8410051227080197,
+      "eligible": false,
+      "same_source_scope": true,
+      "accepted": false
+    },
+    {
+      "question": "Can my account receive a refund today?",
+      "equivalent": false,
+      "similarity": 0.5391611257596512,
+      "eligible": false,
+      "same_source_scope": false,
+      "accepted": false
+    },
+    {
+      "question": "What is the standard refund policy after 30 days?",
+      "equivalent": false,
+      "similarity": 0.8585015188045395,
+      "eligible": false,
+      "same_source_scope": false,
+      "accepted": false
+    },
+    {
+      "question": "What is the standard refund policy for renewals?",
+      "equivalent": false,
+      "similarity": 0.8497455461719446,
+      "eligible": true,
+      "same_source_scope": true,
+      "accepted": false
+    },
+    {
+      "question": "What is the account recovery policy?",
+      "equivalent": false,
+      "similarity": 0.5292644703990796,
+      "eligible": false,
+      "same_source_scope": false,
+      "accepted": false
+    }
+  ]
+}

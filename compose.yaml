@@ -1,0 +1,53 @@
+services:
+  app:
+    build: .
+    ports: ["127.0.0.1:8050:8050"]
+    environment:
+      AEGIS_MODE: ${AEGIS_MODE:-simulated}
+      AEGIS_REDIS_URL: redis://cache:6379/0
+      AEGIS_PRIMARY_URL: ${AEGIS_PRIMARY_URL:-http://host.docker.internal:11435/v1}
+      AEGIS_SECONDARY_URL: ${AEGIS_SECONDARY_URL:-http://host.docker.internal:11435/v1}
+      AEGIS_PRIMARY_MODEL: ${AEGIS_PRIMARY_MODEL:-qwen3:1.7b}
+      AEGIS_SECONDARY_MODEL: ${AEGIS_SECONDARY_MODEL:-qwen3:1.7b}
+      AEGIS_PRIMARY_KEY: ${AEGIS_PRIMARY_KEY:-}
+      AEGIS_SECONDARY_KEY: ${AEGIS_SECONDARY_KEY:-}
+      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+      LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL:-http://host.docker.internal:3000}
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["app-data:/app/.runtime"]
+    depends_on:
+      cache: {condition: service_healthy}
+  cache:
+    image: redis:8.2.2
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    ports: ["127.0.0.1:6380:6379"]
+    volumes: ["cache-data:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  proxy:
+    profiles: ["proxy"]
+    image: ghcr.io/berriai/litellm:main-stable
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    environment:
+      LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-}
+    ports: ["127.0.0.1:4000:4000"]
+    volumes: ["./config/litellm.yaml:/app/config.yaml:ro"]
+    extra_hosts: ["host.docker.internal:host-gateway"]
+  vllm:
+    profiles: ["gpu"]
+    image: vllm/vllm-openai:v0.11.0
+    command: ["--model", "Qwen/Qwen2.5-0.5B-Instruct", "--served-model-name", "support-local", "--max-model-len", "2048", "--gpu-memory-utilization", "0.6"]
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["vllm-models:/root/.cache/huggingface"]
+    deploy:
+      resources:
+        reservations:
+          devices: [{driver: nvidia, count: 1, capabilities: [gpu]}]
+volumes:
+  app-data:
+  cache-data:
+  vllm-models:

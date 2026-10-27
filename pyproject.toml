@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aegis-gateway"
+version = "0.1.0"
+description = "An observable AI gateway and reproducible reliability lab"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.143,<1", "uvicorn>=0.54,<1", "httpx>=0.28,<1", "tenacity>=9,<10", "numpy>=2,<3", "redis>=6,<9", "opentelemetry-sdk>=1.38,<2", "opentelemetry-exporter-otlp-proto-http>=1.38,<2", "langgraph>=1.2,<2", "sentence-transformers>=5,<7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "ruff>=0.14,<1"]
+langfuse = ["langfuse>=4.7,<6"]
+
+[tool.setuptools.packages.find]
+include = ["aegis*"]
+
+[tool.setuptools.package-data]
+aegis = ["static/*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

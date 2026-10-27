@@ -1,0 +1,16 @@
+Local verification: 27 October 2026. Python 3.12; package versions in requirements.lock.
+
+$ check aegis scripts tests
+All checks passed!
+
+
+$ format --check aegis scripts tests
+22 files already formatted
+
+
+$ --check aegis/static/app.js
+
+
+$ -m pytest -q
+....................s.                                                   [100%]
+21 passed, 1 skipped in 17.37s

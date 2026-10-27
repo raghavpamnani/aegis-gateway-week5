@@ -81,7 +81,7 @@ docs/        Architecture, integrations, audit and demonstration
 evidence/    Actual evaluation outputs; no credentials or private prompts
 ```
 
-[API usage](docs/API.md) · [Architecture and state schemas](docs/ARCHITECTURE.md) · [Integration profiles](docs/INTEGRATIONS.md) · [Security and audit](docs/AUDIT.md) · [Validation](docs/VALIDATION.md) · [Demo and submission](docs/SUBMISSION.md)
+[API usage](docs/API.md) · [Architecture and state schemas](docs/ARCHITECTURE.md) · [Integration profiles](docs/INTEGRATIONS.md) · [Security and audit](docs/AUDIT.md) · [Validation](docs/VALIDATION.md) · [Video script](docs/VIDEO_SCRIPT.md) · [Demo and submission](docs/SUBMISSION.md)
 
 ## Current limits
 
